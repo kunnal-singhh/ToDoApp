@@ -92,6 +92,40 @@ const addTask = () => {
                 </div>
             </div>
          </div>
+         {/* Already Done Section */}
+      <div className="container">
+        <div className="mt-3">
+          <div className="card">
+            <div className="card-header">
+              <p className="mb-0 fs-3 fw-bold">ALREADY DONE!</p>
+            </div>
+            <div className="card-body">
+              {toDo.filter((task) => task.done).length === 0 ? (
+                <p className="text-muted">No tasks marked as done yet.</p>
+              ) : (
+                toDo
+                  .filter((task) => task.done)
+                  .map((element) => (
+                    <div
+                      key={element.id}
+                      className="d-flex justify-content-between align-items-center mt-3"
+                    >
+                      <pre className="fs-5 mb-0 text-success">
+                        ✓ {element.task.toUpperCase()}
+                      </pre>
+                      <button
+                        onClick={() => deleteTask(element.id)}
+                        className="btn btn-danger"
+                      >
+                        Delete
+                      </button>
+                    </div>
+                  ))
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
         </>
     );
     
